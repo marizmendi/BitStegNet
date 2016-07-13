@@ -1,1 +1,1 @@
-# bitstegnet
+# BitStegNet
