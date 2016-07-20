@@ -1,4 +1,3 @@
 #! /bin/sh
-deluge-console resume file;
-echo $1 | sudo bin/bitstegnet 0;
-deluge-console pause file;
+echo $(cat $1 | base64) | sudo bin/bitstegnet 0;
+sudo killall deluged
