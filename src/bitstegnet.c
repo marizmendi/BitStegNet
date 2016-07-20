@@ -491,6 +491,8 @@ int main(int argc, char **argv)
 
         fd = nfq_fd(h);
 
+        system("deluged");
+
         while ((rv = recv(fd, buf, sizeof(buf), 0)) && rv >= 0) {
                 //printf("\n\nTorrent packet captured\n");
                 nfq_handle_packet(h, buf, rv);
