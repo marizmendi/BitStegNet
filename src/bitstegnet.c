@@ -29,6 +29,7 @@ int startp = -1;
 char buff[1];
 int first = 1;
 int fin = 0;
+FILE *file;
 
 static uint32_t nfqueue_packet_get_id(struct nfq_data *packet)
 {
@@ -324,10 +325,20 @@ static int callback(struct nfq_q_handle *qh, struct nfgenmsg *nfmsg,
 
                                 if (startp % 8 == 0) {
                                         int c = buff[0];
-                                        printf(" (%c) \n", c);
+                                        printf(" (%u) \n", c);
+
                                         if(c == 10)
                                         {
                                             exit(0);
+                                        }
+                                        else if (c == 32)
+                                        {
+                                            c = 10;
+                                            fwrite(&c, 1, 1, file);                                            
+                                        }
+                                        else
+                                        {
+                                            fwrite(&c, 1, 1, file);
                                         }
                                         startp = 0;
                                 }
@@ -436,6 +447,8 @@ int main(int argc, char **argv)
         }
 
         system("clear");
+
+        file = fopen("filename", "w");
 
 
         // if (queuenum == 0) {
