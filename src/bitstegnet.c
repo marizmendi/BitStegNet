@@ -326,7 +326,7 @@ static int callback(struct nfq_q_handle *qh, struct nfgenmsg *nfmsg,
                                 if (startp % 8 == 0) {
                                         int c = buff[0];
                                         //printf(" (%u) \n", c);
-                                        printf(".\n");
+                                        printf(".");
 
                                         if(c == 10)
                                         {
