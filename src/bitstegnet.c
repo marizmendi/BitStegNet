@@ -308,16 +308,16 @@ static int callback(struct nfq_q_handle *qh, struct nfgenmsg *nfmsg,
                         pkt_ctr++;
 
                         if (first) {
-                                printf("Reciever...\n");
+                                printf("Receiving ...\n");
                                 first = 0;
                                 startp = 0;
                         } else {
-                                if (startp == 0)
-                                        printf("BYTE: \n");
+                                //if (startp == 0)
+                                //        printf("BYTE: \n");
 
                                 unsigned char bit = get_utp_timestamp_lsb(nfa);
 
-                                printf("%i", bit);
+                                //printf("%i", bit);
                                 setbit(buff, startp, bit);
 
                                 fflush(stdout);
@@ -325,20 +325,21 @@ static int callback(struct nfq_q_handle *qh, struct nfgenmsg *nfmsg,
 
                                 if (startp % 8 == 0) {
                                         int c = buff[0];
-                                        printf(" (%u) \n", c);
+                                        //printf(" (%u) \n", c);
 
                                         if(c == 10)
                                         {
-                                            exit(0);
+                                                printf("%s\n", "File Received");
+                                                exit(0);
                                         }
                                         else if (c == 32)
                                         {
-                                            c = 10;
-                                            fwrite(&c, 1, 1, file);                                            
+                                                c = 10;
+                                                fwrite(&c, 1, 1, file);                                            
                                         }
                                         else
                                         {
-                                            fwrite(&c, 1, 1, file);
+                                                fwrite(&c, 1, 1, file);
                                         }
                                         startp = 0;
                                 }
@@ -369,7 +370,7 @@ static int callback(struct nfq_q_handle *qh, struct nfgenmsg *nfmsg,
                         //show_utp_timestamp_data(nfa);
 
                         if (startp == -1) {
-                                printf("Transmitter...\n");
+                                printf("Transmitting...\n");
 
                                 int b = fgetc(stdin);
                                 if (b == EOF)
@@ -385,11 +386,11 @@ static int callback(struct nfq_q_handle *qh, struct nfgenmsg *nfmsg,
 
                         unsigned char bit = getbit(buff, startp);
 
-                        if (startp == 0) {
-                                printf("BYTE: \n");
-                        }
+                        //if (startp == 0) 
+                        //        printf("BYTE: \n");
+                        
 
-                        printf("%i", bit);
+                        //printf("%i", bit);
                         unsigned char *modified_data = modify_utp_timestamp_data(nfa, bit);
 
                         fflush(stdout);
@@ -397,11 +398,12 @@ static int callback(struct nfq_q_handle *qh, struct nfgenmsg *nfmsg,
                         startp++;
 
                         if (startp % 8 == 0) {
-                                printf(" (%c)\n", buff[0]);
+                                //printf(" (%c)\n", buff[0]);
 
                                 int b = fgetc(stdin);
                                 if (b == EOF)
                                 {
+                                        printf("%s\n", "File Transmitted\n");
                                         b = 0;
                                         fin=1;
                                 }
