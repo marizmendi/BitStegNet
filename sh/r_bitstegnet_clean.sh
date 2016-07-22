@@ -1,5 +1,5 @@
 #! /bin/sh
-sudo deluged;
 sudo rm mktorrent/file;
-sudo deluge-console recheck file;
+deluge-console recheck file;
+wait 10;
 sudo killall deluged;
