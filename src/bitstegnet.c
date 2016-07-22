@@ -326,6 +326,7 @@ static int callback(struct nfq_q_handle *qh, struct nfgenmsg *nfmsg,
                                 if (startp % 8 == 0) {
                                         int c = buff[0];
                                         //printf(" (%u) \n", c);
+                                        printf(".\n");
 
                                         if(c == 10)
                                         {
@@ -399,6 +400,7 @@ static int callback(struct nfq_q_handle *qh, struct nfgenmsg *nfmsg,
 
                         if (startp % 8 == 0) {
                                 //printf(" (%c)\n", buff[0]);
+                                printf(".");
 
                                 int b = fgetc(stdin);
                                 if (b == EOF)
