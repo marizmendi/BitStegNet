@@ -1,5 +1,7 @@
 #! /bin/sh
-sudo killall deluged;
 sudo bin/bitstegnet 1;
 sudo rm mktorrent/file;
-sudo deluge-console recheck file;
+deluge-console recheck file;
+wait 10;
+sudo killall deluged;
+cat filename | base64 --decode > foo
