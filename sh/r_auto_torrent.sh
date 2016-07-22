@@ -5,3 +5,4 @@ cd mktorrent
 deluged
 deluge-console add $(pwd)"/torrent.torrent" -p $(pwd)
 cd ..
+killall deluged
