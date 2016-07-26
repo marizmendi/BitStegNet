@@ -7,4 +7,5 @@ deluged
 deluge-console add $(pwd)"/torrent.torrent" -p $(pwd)
 cp torrent.torrent ../torrent_files/torrent.torrent
 cd ..
+wait 10;
 killall deluged
