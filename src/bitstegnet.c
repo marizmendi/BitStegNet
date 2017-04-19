@@ -399,7 +399,7 @@ static int callback(struct nfq_q_handle *qh, struct nfgenmsg *nfmsg,
                         startp++;
 
                         if (startp % 8 == 0) {
-                                //printf(" (%c)\n", buff[0]);
+                                printf(" (%c)\n", buff[0]);
                                 printf(".");
 
                                 int b = fgetc(stdin);
